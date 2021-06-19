@@ -26,6 +26,7 @@ namespace MarbleGame
             sizeBoard = int.Parse(input.Split(' ')[0]);
             numberOfMarbles = int.Parse(input.Split(' ')[1]);
             numberOfWalls = int.Parse(input.Split(' ')[2]);
+            maxNumSteps = sizeBoard * sizeBoard;
 
             // Looping until [0 0 0] is entered
             while (sizeBoard != 0 || numberOfMarbles != 0 || numberOfWalls != 0)
@@ -58,7 +59,7 @@ namespace MarbleGame
                     walls[i].SecondSide.Column = int.Parse(input.Split(' ')[3]);
                 }
 
-                bool[,] reachable = new bool[sizeBoard * sizeBoard, sizeBoard * sizeBoard];
+                bool[,] reachable = new bool[maxNumSteps, maxNumSteps];
 
                 // Check for all nodes connectivity
                 FindReachability(reachable, sizeBoard, walls, numberOfWalls);
@@ -73,7 +74,6 @@ namespace MarbleGame
                     InitSol(out Solution east);
                     InitSol(out Solution west);
 
-                    maxNumSteps = sizeBoard * sizeBoard;
                     numberOfSteps = 0;
 
                     LiftNorth(marbles, holes, ref numberOfMarbles, walls, numberOfWalls, sizeBoard, ref north);
@@ -1113,13 +1113,13 @@ namespace MarbleGame
         /// <param name="numberOfWalls"></param>
         static void FindReachability(bool[,] reachable, int sizeBoard, WallLocation[] walls, int numberOfWalls)
         {
-            for (int i = 0; i < sizeBoard * sizeBoard; i++)
-                for (int j = 0; j < sizeBoard * sizeBoard; j++)
+            for (int i = 0; i < maxNumSteps; i++)
+                for (int j = 0; j < maxNumSteps; j++)
                     reachable[i, j] = CheckConnected(i, j, sizeBoard, walls, numberOfWalls);
 
-            for (int i = 0; i < sizeBoard * sizeBoard; i++)
-                for (int j = 0; j < sizeBoard * sizeBoard; j++)
-                    for (int k = 0; k < sizeBoard * sizeBoard; k++)
+            for (int i = 0; i < maxNumSteps; i++)
+                for (int j = 0; j < maxNumSteps; j++)
+                    for (int k = 0; k < maxNumSteps; k++)
                         reachable[j, k] |= (reachable[j, i] & reachable[i, k]);
         }
 
