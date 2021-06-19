@@ -310,7 +310,7 @@ namespace MarbleGame
                     if (marbles[i].Column == columnId)
                     {
                         placed = false;
-                        GetMoveWestLocation(ref marbles[i], newMarbles, ref newId, copyHoles, ref copyNOM, walls, numberOfWalls, sizeBoard, out MarbleHoleLocation temp, ref safeDiscard, ref placed);
+                        GetMoveWestLocation(ref marbles[i], newMarbles, ref newId, copyHoles, ref copyNOM, walls, numberOfWalls, out MarbleHoleLocation temp, ref safeDiscard, ref placed);
 
                         if (!placed)
                         {
@@ -552,7 +552,7 @@ namespace MarbleGame
                 for (int i = 0; i < numberOfMarbles; i++)
                     if (rowId == marbles[i].Row)
                     {
-                        GetMoveNorthLocation(ref marbles[i], newMarbles, ref newId, copyHoles, ref copyNOM, walls, numberOfWalls, sizeBoard, out MarbleHoleLocation temp, ref safeDiscard, ref placed);
+                        GetMoveNorthLocation(ref marbles[i], newMarbles, ref newId, copyHoles, ref copyNOM, walls, numberOfWalls, out MarbleHoleLocation temp, ref safeDiscard, ref placed);
 
                         if (!placed)
                         {
@@ -694,7 +694,7 @@ namespace MarbleGame
 
                     if (marbles[i].Row == rowId)
                     {
-                        GetMoveNorthLocation(ref marbles[i], tempMarbles, ref newNum, copyHoles, ref copyNOM, walls, numberOfWalls, sizeBoard, out MarbleHoleLocation temp, ref wrong, ref placed);
+                        GetMoveNorthLocation(ref marbles[i], tempMarbles, ref newNum, copyHoles, ref copyNOM, walls, numberOfWalls, out MarbleHoleLocation temp, ref wrong, ref placed);
 
                         if (placed)
                         {
@@ -750,7 +750,7 @@ namespace MarbleGame
 
                     if (marbles[i].Column == columnId)
                     {
-                        GetMoveWestLocation(ref marbles[i], tempMarbles, ref newNum, copyHoles, ref copyNOM, walls, numberOfWalls, sizeBoard, out MarbleHoleLocation temp, ref wrong, ref placed);
+                        GetMoveWestLocation(ref marbles[i], tempMarbles, ref newNum, copyHoles, ref copyNOM, walls, numberOfWalls, out MarbleHoleLocation temp, ref wrong, ref placed);
 
                         if (placed)
                         {
